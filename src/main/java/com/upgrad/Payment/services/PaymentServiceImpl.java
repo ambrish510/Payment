@@ -2,6 +2,7 @@ package com.upgrad.Payment.services;
 
 import com.upgrad.Payment.dao.TransactionDao;
 import com.upgrad.Payment.entities.TransactionDetailsEntity;
+import com.upgrad.Payment.exception.RecordNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +25,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<TransactionDetailsEntity> acceptMultiplePaymentDetails(List<TransactionDetailsEntity> payments) {
         List<TransactionDetailsEntity> savedPayment = new ArrayList<>();
-        for(TransactionDetailsEntity payment : payments){
+        for (TransactionDetailsEntity payment : payments) {
             savedPayment.add(acceptPaymentDetails(payment));
         }
         return savedPayment;
@@ -32,7 +33,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public TransactionDetailsEntity getPaymentDetails(int id) {
-        return transactionDao.findById(id).get();
+        return transactionDao.findById(id).orElseThrow(() -> new RecordNotFoundException("Invalid Transaction Id"));
     }
 
     @Override
@@ -50,8 +51,8 @@ public class PaymentServiceImpl implements PaymentService {
     public boolean deletePayment(int id) {
         TransactionDetailsEntity savedPayment = getPaymentDetails(id);
 
-        if(savedPayment == null){
-            return false ;
+        if (savedPayment == null) {
+            return false;
         }
 
         transactionDao.delete(savedPayment);
@@ -64,7 +65,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Page<TransactionDetailsEntity> getPaginatedPaymentDeatails(Pageable pageable) {
+    public Page<TransactionDetailsEntity> getPaginatedPaymentDetails(Pageable pageable) {
         return transactionDao.findAll(pageable);
     }
 }

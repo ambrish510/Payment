@@ -8,17 +8,17 @@ import java.util.List;
 
 public interface PaymentService {
 
-    public TransactionDetailsEntity acceptPaymentDetails(TransactionDetailsEntity payment);
+    TransactionDetailsEntity acceptPaymentDetails(TransactionDetailsEntity payment);
 
-    public List<TransactionDetailsEntity> acceptMultiplePaymentDetails(List<TransactionDetailsEntity> payments);
+    List<TransactionDetailsEntity> acceptMultiplePaymentDetails(List<TransactionDetailsEntity> payments);
 
-    public TransactionDetailsEntity getPaymentDetails(int id);
+    TransactionDetailsEntity getPaymentDetails(int id);
 
-    public TransactionDetailsEntity updatePaymentDetails(int id , TransactionDetailsEntity payments);
+    TransactionDetailsEntity updatePaymentDetails(int id, TransactionDetailsEntity payments);
 
-    public boolean deletePayment(int id);
+    boolean deletePayment(int id);
 
-    public List<TransactionDetailsEntity> getAllPayments();
+    List<TransactionDetailsEntity> getAllPayments();
 
-    public Page<TransactionDetailsEntity> getPaginatedPaymentDeatails(Pageable pageable);
+    Page<TransactionDetailsEntity> getPaginatedPaymentDetails(Pageable pageable);
 }

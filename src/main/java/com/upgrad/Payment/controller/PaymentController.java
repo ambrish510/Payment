@@ -11,27 +11,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value="/transaction")
+@RequestMapping(value = "/transaction")
 public class PaymentController {
 
     @Autowired
-    private PaymentServiceImpl paymentService ;
+    private PaymentServiceImpl paymentService;
 
     @Autowired
     ModelMapper modelMapper;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TransactionDetailsEntity> CreatePayment(@RequestBody TransactionDTO transactionDTO) {
-        TransactionDetailsEntity newTransaction = modelMapper.map(transactionDTO,TransactionDetailsEntity.class);
-        TransactionDetailsEntity savedtransaction = paymentService.acceptPaymentDetails(newTransaction);
-        TransactionDTO SavedTransactionDTO = modelMapper.map(savedtransaction,TransactionDTO.class);
-        return new ResponseEntity(SavedTransactionDTO,HttpStatus.CREATED);
+    public ResponseEntity<TransactionDTO> CreatePayment(@RequestBody TransactionDTO transactionDTO) {
+        TransactionDetailsEntity newTransaction = modelMapper.map(transactionDTO, TransactionDetailsEntity.class);
+        TransactionDetailsEntity savedTransaction = paymentService.acceptPaymentDetails(newTransaction);
+        TransactionDTO SavedTransactionDTO = modelMapper.map(savedTransaction, TransactionDTO.class);
+        return new ResponseEntity<>(SavedTransactionDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping(value="/{transactionId}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TransactionDetailsEntity> getPaymentDetailsById(@PathVariable int transactionId){
+    @GetMapping(value = "/{transactionId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TransactionDTO> getPaymentDetailsById(@PathVariable int transactionId) {
         TransactionDetailsEntity responsePayment = paymentService.getPaymentDetails(transactionId);
         TransactionDTO responsePaymentDTO = modelMapper.map(responsePayment, TransactionDTO.class);
-        return new ResponseEntity(responsePaymentDTO, HttpStatus.OK);
+        return new ResponseEntity<>(responsePaymentDTO, HttpStatus.OK);
+
     }
 }

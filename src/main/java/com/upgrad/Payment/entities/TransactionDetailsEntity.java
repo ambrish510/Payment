@@ -8,21 +8,21 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name="transaction")
+@Table(name = "transaction")
 public class TransactionDetailsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int transactionId ;
+    private int transactionId;
 
     @Column
-    private String paymentMode ;
+    private String paymentMode;
 
     @Column(nullable = false)
-    private int bookingId ;
+    private int bookingId;
 
-    @Column(nullable = true)
+    @Column
     private String upiId;
 
-    @Column(nullable = true)
+    @Column
     private String cardNumber;
 }

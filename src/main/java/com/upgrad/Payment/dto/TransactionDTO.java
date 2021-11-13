@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class TransactionDTO {
 
-    private int transactionId ;
-    private String paymentMode ;
-    private int bookingId ;
+    private int transactionId;
+    private String paymentMode;
+    private int bookingId;
     private String upiId;
     private String cardNumber;
 }
