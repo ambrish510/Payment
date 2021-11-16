@@ -1,10 +1,10 @@
 package com.upgrad.Payment.exception;
 
-public class RecordNotFoundException extends RuntimeException {
+public class TransactionNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public RecordNotFoundException(String message) {
+    public TransactionNotFoundException(String message){
         super(message);
     }
 }

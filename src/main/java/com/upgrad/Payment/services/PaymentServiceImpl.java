@@ -1,8 +1,8 @@
 package com.upgrad.Payment.services;
 
 import com.upgrad.Payment.dao.TransactionDao;
-import com.upgrad.Payment.entities.TransactionDetailsEntity;
-import com.upgrad.Payment.exception.RecordNotFoundException;
+import com.upgrad.Payment.exception.TransactionNotFoundException;
+import com.upgrad.Payment.model.entity.TransactionDetailsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +33,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public TransactionDetailsEntity getPaymentDetails(int id) {
-        return transactionDao.findById(id).orElseThrow(() -> new RecordNotFoundException("Invalid Transaction Id"));
+        return transactionDao.findById(id).orElseThrow(() -> new TransactionNotFoundException("Invalid Transaction Id"));
     }
 
     @Override

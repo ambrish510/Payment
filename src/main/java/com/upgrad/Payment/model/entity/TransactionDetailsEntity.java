@@ -1,4 +1,4 @@
-package com.upgrad.Payment.entities;
+package com.upgrad.Payment.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +25,15 @@ public class TransactionDetailsEntity {
 
     @Column
     private String cardNumber;
+
+    @Override
+    public String toString() {
+        return "TransactionDetailsEntity{" +
+                "transactionId=" + transactionId +
+                ", paymentMode='" + paymentMode + '\'' +
+                ", bookingId=" + bookingId +
+                ", upiId='" + upiId + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                '}';
+    }
 }

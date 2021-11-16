@@ -1,6 +1,6 @@
 package com.upgrad.Payment.services;
 
-import com.upgrad.Payment.entities.TransactionDetailsEntity;
+import com.upgrad.Payment.model.entity.TransactionDetailsEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
